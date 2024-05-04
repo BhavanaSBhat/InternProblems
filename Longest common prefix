@@ -1,0 +1,18 @@
+def longestCommonPrefix(self, strs: List[str]) -> str:
+        longest_common_prefix = ''
+        if strs:
+            if len(strs) == 1:
+                return strs[0]
+            
+            word = strs[0]
+
+            prefixes = [word[:i+1] for i in range(len(word))]
+            for prefix in prefixes:
+                common_prefix = True
+                for word in strs[1:]:
+                    if not word.startswith(prefix):
+                        common_prefix = False
+                        break
+                if common_prefix and len(prefix) > len(longest_common_prefix):
+                    longest_common_prefix = prefix
+        return longest_common_prefix
