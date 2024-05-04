@@ -1,0 +1,28 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        if s == "":
+            return 0
+        # Exceeded Time Limit approach
+        # length = len(s)
+        # max_length = 0
+        # for i in range(length):
+        #     for j in range(i+1, length+1):
+        #         distinct_chars = list(set(s[i:j]))
+        #         unique_chars = len(distinct_chars)
+        #         if  unique_chars == len(s[i:j]):
+        #             if unique_chars > max_length:
+        #                 max_length = unique_chars
+        # return max_length
+        
+        start = 0
+        end = 0
+        max_length = 0
+        d = {}
+        while end < len(s):
+            if s[end] in d and d[s[end]] >= start:
+                start = d[s[end]]+1
+            max_length = max(max_length, end-start+1)  
+            d[s[end]] = end
+            end +=1
+        
+        return max_length
